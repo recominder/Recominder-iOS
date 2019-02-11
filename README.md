@@ -1,2 +1,14 @@
-# Recominder-iOS
-The code for the Recominder iOS App written in Swift 4. Lottie used for animations. Working with complex HealthKit data.
+# Recaminder
+### iOS app and Web app that takes data from apple healthKit and gives the user health tips depending on their individual data.
+
+Team: Sean, Erika, Aakash and Timofey
+
+## Technology
+* Swift
+* Node.js
+* React
+
+Sean: BEW and FEW
+Erika: Design and FEW
+Aakash: Data Science
+Timofey: Mobile
