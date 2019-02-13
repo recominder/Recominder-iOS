@@ -14,7 +14,7 @@ class TestVC: UIViewController {
     // Progress bar animation
     let progressBarAnimation = LOTAnimationView(name: "progress")
     var progress :CGFloat = CGFloat(0.0)
-    
+    var net = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,9 @@ class TestVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(playAnimation(rec:)))
         
         self.view.addGestureRecognizer(tap)
+        
+        
+//        net.postHeartData(<#T##jsonData: Data##Data#>, <#T##completion: (NetworkManager.Result<String>) -> Void##(NetworkManager.Result<String>) -> Void#>)
     }
     
     @objc func playAnimation(rec:UITapGestureRecognizer) {

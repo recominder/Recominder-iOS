@@ -255,8 +255,13 @@ class MainViewController: UIViewController {
                                                             var healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
                                                             
                                                             let jsonData = try? JSONEncoder().encode(healthKitData)
+                                                            
                                                             let jsonString = String(data: jsonData!, encoding: .utf8)!
                                                             print("----------------\nData in JSON\n----------------\n",jsonString)
+//                                                            // DEBUG AREA
+//                                                            let testAllOneByOne = try? JSONEncoder().encode(stepCountArrayData)
+//                                                            let eachAsJson = String(data: testAllOneByOne!, encoding: .utf8)!
+//                                                            print("----------------\nData in JSON\n----------------\n",eachAsJson)
 //
                                                             // TODO: push data
                                                             self.networkManager.postHeartData(jsonData!, { (response) in

@@ -207,11 +207,11 @@ class NetworkManager {
     
     // TODO: ASK Sean for a data response if it recieved the data.
     func postHeartData(_ jsonData: Data,_ completion: @escaping (Result<String>) -> Void) {
-        var loginRequest = makePostRequest(for: .healthKitData)
+        var healthPushRequest = makePostRequest(for: .healthKitData)
         
-        loginRequest.httpBody = jsonData
+        healthPushRequest.httpBody = jsonData
 
-        let task = urlSession.dataTask(with: loginRequest) { data, response, error in
+        let task = urlSession.dataTask(with: healthPushRequest) { data, response, error in
             // Check for errors.
             if let error = error {
                 return completion(Result.failure(error))
@@ -221,6 +221,8 @@ class NetworkManager {
             guard let data = data else {
                 return completion(Result.failure(EndPointError.noData))
             }
+            print("Data: ", data)
+            
             // Attempt to decode the data.
             guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
                 return completion(Result.failure(EndPointError.couldNotParse))
