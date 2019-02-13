@@ -20,6 +20,9 @@
 		F3891E66220AB74200C11DFA /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891E65220AB74200C11DFA /* Trainer.swift */; };
 		F3891E68220AB76E00C11DFA /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891E67220AB76E00C11DFA /* Health.swift */; };
 		F391C088220CCF1A00D47CED /* HealthKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391C087220CCF1A00D47CED /* HealthKitData.swift */; };
+		F394428E22139C59005A8214 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394428D22139C59005A8214 /* TestViewController.swift */; };
+		F39442902213A2B0005A8214 /* progress1.json in Resources */ = {isa = PBXBuildFile; fileRef = F394428F2213A2B0005A8214 /* progress1.json */; };
+		F39442942213A7A8005A8214 /* progress.json in Resources */ = {isa = PBXBuildFile; fileRef = F39442932213A7A8005A8214 /* progress.json */; };
 		F39B2541220FE90100B71044 /* upload.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2540220FE90100B71044 /* upload.json */; };
 		F39B2543220FE95000B71044 /* finished.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2542220FE95000B71044 /* finished.json */; };
 /* End PBXBuildFile section */
@@ -43,6 +46,9 @@
 		F3891E65220AB74200C11DFA /* Trainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
 		F3891E67220AB76E00C11DFA /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		F391C087220CCF1A00D47CED /* HealthKitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitData.swift; sourceTree = "<group>"; };
+		F394428D22139C59005A8214 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		F394428F2213A2B0005A8214 /* progress1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = progress1.json; sourceTree = "<group>"; };
+		F39442932213A7A8005A8214 /* progress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = progress.json; sourceTree = "<group>"; };
 		F39B2540220FE90100B71044 /* upload.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upload.json; sourceTree = "<group>"; };
 		F39B2542220FE95000B71044 /* finished.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = finished.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				F374401D2203B30D00F06EE8 /* MainViewController.swift */,
+				F394428D22139C59005A8214 /* TestViewController.swift */,
 				F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */,
 			);
 			path = Controller;
@@ -154,6 +161,8 @@
 			children = (
 				F39B2540220FE90100B71044 /* upload.json */,
 				F39B2542220FE95000B71044 /* finished.json */,
+				F394428F2213A2B0005A8214 /* progress1.json */,
+				F39442932213A7A8005A8214 /* progress.json */,
 			);
 			path = "Animations (JSON)";
 			sourceTree = "<group>";
@@ -226,6 +235,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39442902213A2B0005A8214 /* progress1.json in Resources */,
+				F39442942213A7A8005A8214 /* progress.json in Resources */,
 				F39B2541220FE90100B71044 /* upload.json in Resources */,
 				F37440262203B30E00F06EE8 /* LaunchScreen.storyboard in Resources */,
 				F37440232203B30E00F06EE8 /* Assets.xcassets in Resources */,
@@ -295,6 +306,7 @@
 				F304EBBC220E8D3B004C88B4 /* LoginViewController.swift in Sources */,
 				F391C088220CCF1A00D47CED /* HealthKitData.swift in Sources */,
 				F374401C2203B30D00F06EE8 /* AppDelegate.swift in Sources */,
+				F394428E22139C59005A8214 /* TestViewController.swift in Sources */,
 				F3891E66220AB74200C11DFA /* Trainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

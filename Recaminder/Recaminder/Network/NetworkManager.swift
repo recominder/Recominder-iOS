@@ -191,7 +191,7 @@ class NetworkManager {
             // TODO: Find a way to check for this failure.
             guard let loginSuccess = response["userId"] else {
                 let failMessage = response["message"]
-                completion(Result.failedSigning("\(failMessage)"))
+                completion(Result.failedSigning("\(failMessage!)"))
                 return
             }
             
@@ -205,6 +205,7 @@ class NetworkManager {
         task.resume()
     }
     
+    // TODO: ASK Sean for a data response if it recieved the data.
     func postHeartData(_ jsonData: Data,_ completion: @escaping (Result<String>) -> Void) {
         var loginRequest = makePostRequest(for: .healthKitData)
         
@@ -226,7 +227,7 @@ class NetworkManager {
             }
             
             if let result = result as? [String: Any] {
-//                print("\n\n------------------------\n\nResponse heart rate data: ",result)
+                print("\n\n------------------------\n\nResponse heart rate data: ",result)
             }
 
 //            if let result = result as? [String: Any] {

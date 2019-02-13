@@ -26,6 +26,9 @@ class MainViewController: UIViewController {
     // Upload finished Animation
     let finishedUploadAnimation = LOTAnimationView(name: "finished")
     
+    // Progress bar animation
+    let progressBarAnimation = LOTAnimationView(name: "progress")
+    
     // Transparent background
     let transparentView: UIView = {
         var view = UIView()
@@ -33,6 +36,8 @@ class MainViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return view
     }()
+    
+    var progress :CGFloat = CGFloat(0.0)
     
     // var trainers: [Trainer] = []
     // var health: Health?
@@ -45,6 +50,7 @@ class MainViewController: UIViewController {
         view.addSubview(transparentView)
         view.addSubview(uploadAnimation)
         view.addSubview(finishedUploadAnimation)
+        view.addSubview(progressBarAnimation)
         
         transparentView.fillSuperview()
         
@@ -53,25 +59,45 @@ class MainViewController: UIViewController {
         uploadAnimation.centerOfView(to: view)
         finishedUploadAnimation.centerOfView(to: view)
         
+        progressBarAnimation.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 40, right: 0))
+        progressBarAnimation.centerHorizontalOfView(to: view)
+        
+        
         uploadAnimation.viewConstantRatio(widthToHeightRatio: 1, width: .init(width: 200
             , height: 100))
         finishedUploadAnimation.viewConstantRatio(widthToHeightRatio: 1, width: .init(width: 200
             , height: 100))
         
+        progressBarAnimation.viewConstantRatio(widthToHeightRatio: 1, width: .init(width: 200
+            , height: 100))
+        
         uploadAnimation.contentMode = .scaleAspectFill
         finishedUploadAnimation.contentMode = .scaleAspectFill
-        
-        uploadAnimation.loopAnimation = true
+        progressBarAnimation.contentMode = .scaleAspectFit
+                
+        uploadAnimation.loopAnimation = false
         
         uploadAnimation.play{ (finished) in
             // Do Something
-            self.finishedUploadAnimation.isHidden = false
-            self.finishedUploadAnimation.play{ (finished) in
-                self.finishedUploadAnimation.isHidden = true
+            self.progressBarAnimation.play(fromProgress: 0.5, toProgress: 1.0, withCompletion:{ (bool) in
                 self.dismiss(animated: true, completion: {
                     // TODO: Present Next View
                 })
+            })
+            self.finishedUploadAnimation.isHidden = false
+            self.finishedUploadAnimation.play{ (finished) in
+                self.finishedUploadAnimation.isHidden = true
             }
+        }
+    }
+    
+    private func increaseProgressForAnimation() {
+        if progress >= 0.5 {
+            progress = 1
+            progressBarAnimation.play(fromProgress: 0.5, toProgress: 1.0, withCompletion: nil)
+        } else {
+            progressBarAnimation.play(fromProgress: progress, toProgress: progress + 0.1, withCompletion: nil)
+            progress += 0.1
         }
     }
     
@@ -118,7 +144,6 @@ class MainViewController: UIViewController {
         
         // Request Authorization for data.
         healthStore.requestAuthorization(toShare: nil, read: readingTypes) { (success, error) -> Void in
-            
             if error != nil
             {
                 print("error: \(error?.localizedDescription ?? "Error while requesting HealthKit data")")
@@ -154,7 +179,7 @@ class MainViewController: UIViewController {
                         let heartModel = HeartRate(rate: data.quantity.doubleValue(for: countPerMinute), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                         heartRateArrayData.append(heartModel)
                     }
-                    
+                    self.increaseProgressForAnimation()
                     // Get Height Data
                     self.getHeightData(completion: { (heightData) in
                         // TODO: HEIGHT MODEL
@@ -170,13 +195,13 @@ class MainViewController: UIViewController {
                                 let bloodPressureSysModel = BloodPressureSystolicData(value: data.quantity.doubleValue(for: bloodPressureSysUnit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                 bloodPressureSystolicArrayData.append(bloodPressureSysModel)
                             }
+                            self.increaseProgressForAnimation()
                             self.getBloodPressureDiastolicData(completion: { (bloodPressureDiastolicRawData) in
                                 
                                 for data in bloodPressureDiastolicRawData! {
                                     let bloodPressureDiastolicModel = BloodPressureDiastolicData(value: data.quantity.doubleValue(for: bloodPressureSysUnit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                     bloodPressureDiastolicArrayData.append(bloodPressureDiastolicModel)
                                 }
-                                
                                 self.getBodyMassData(completion: { (bodyMassRawData) in
                                     let pounds:HKUnit = HKUnit(from: "lb")
                                     
@@ -191,6 +216,7 @@ class MainViewController: UIViewController {
                                             let bodyTemperatureModel = BodyTemperatureData(value: data.quantity.doubleValue(for: fahrenheit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                             bodyTemperatureArrayData.append(bodyTemperatureModel)
                                         }
+                                        self.increaseProgressForAnimation()
                                         self.getActiveEnergyBurnedData(completion: { (activeEnergyBurnedRawData) in
                                             let calorie:HKUnit = HKUnit(from: "kcal")
                                             
@@ -198,14 +224,13 @@ class MainViewController: UIViewController {
                                                 let activeEnergyBurnedModel = ActiveEnergyBurnedData(value: data.quantity.doubleValue(for: calorie), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                                 activeEnergyBurnedArrayData.append(activeEnergyBurnedModel)
                                             }
-                                            
+                                            self.increaseProgressForAnimation()
                                             self.getLeanBodyMassData(completion: { (leanBodyMassRawData) in
                                                 
                                                 for data in leanBodyMassRawData! {
                                                     let leanBodyMassModel = LeanBodyMassData(value: data.quantity.doubleValue(for: pounds), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                                     leanBodyMassArrayData.append(leanBodyMassModel)
                                                 }
-                                                
                                                 self.getRespiratoryRateData(completion: { (respiratoryRateRawData) in
                                                     
                                                     for data in respiratoryRateRawData! {
@@ -217,6 +242,7 @@ class MainViewController: UIViewController {
                                                             let restingHeartRateModel = RestingHeartRateData(value: data.quantity.doubleValue(for: countPerMinute), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                                             restingHeartRateArrayData.append(restingHeartRateModel)
                                                         }
+                                                        self.increaseProgressForAnimation()
                                                         self.getStepCountData(completion: { (stepCountRawData) in
                                                             let count:HKUnit = HKUnit(from: "count")
                                                             
@@ -224,12 +250,13 @@ class MainViewController: UIViewController {
                                                                 let stepCountModel = StepCountData(value: data.quantity.doubleValue(for: count), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                                                                 stepCountArrayData.append(stepCountModel)
                                                             }
+                                                            
                                                             // Code for the most inner nested to export all the data as JSON
                                                             var healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
                                                             
                                                             let jsonData = try? JSONEncoder().encode(healthKitData)
                                                             let jsonString = String(data: jsonData!, encoding: .utf8)!
-//                                                            print("----------------\nData in JSON\n----------------\n",jsonString)
+                                                            print("----------------\nData in JSON\n----------------\n",jsonString)
 //
                                                             // TODO: push data
                                                             self.networkManager.postHeartData(jsonData!, { (response) in
@@ -238,7 +265,6 @@ class MainViewController: UIViewController {
                                                                 self.uploadAnimation.loopAnimation = false
                                                                 
                                                             }) // End of pushing data to server
-                                                            
                                                             
                                                         }) // End of Step Count
                                                         

@@ -296,9 +296,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             else {
                 // TODO: Handle Log in
                  logIn(emailTextField.text!, passwordTextField.text!)
-                var mainVC = MainViewController()
-                mainVC.modalPresentationStyle = .overCurrentContext
-                self.present(mainVC, animated: true, completion: nil)
             }
         }
         else {
@@ -317,6 +314,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             switch result {
             case let .success(result):
                 // TODO: Do something with result (which is probably going to be the response)
+                self.nextViewController()
+                self.displayError("Sending Data!")
                 print("sign up: ",result)
             case let .failedSigning(result):
                 print("Failed Sign up: ", result)
@@ -335,6 +334,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             case let .success(result):
                 // TODO: Do something with result (which is probably going to be the response)
                 print("log in result: ",result)
+                self.nextViewController()
+                self.displayError("Sending Data!")
             case let .failedSigning(result):
                 print("Failed Log in: ", result)
                 self.displayError("\(result)")
@@ -342,6 +343,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 print(error)
             }
         }
+    }
+    
+    // Push next view to load all the data to the server
+    func nextViewController() {
+        var mainVC = MainViewController()
+        mainVC.modalPresentationStyle = .overCurrentContext
+        self.present(mainVC, animated: true, completion: nil)
     }
     
     // Add error label with string for the error
