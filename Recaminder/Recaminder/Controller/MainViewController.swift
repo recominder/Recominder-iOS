@@ -183,8 +183,8 @@ class MainViewController: UIViewController {
         
         let jsonData = try? JSONEncoder().encode(healthKitData)
         
-        let jsonString = String(data: jsonData!, encoding: .utf8)!
-        print("----------------\nData in JSON\n----------------\n",jsonString)
+//        let jsonString = String(data: jsonData!, encoding: .utf8)!
+//        print("----------------\nData in JSON\n----------------\n",jsonString)
         print("Posting Data")
 
         self.networkManager.postHeartData(jsonData!, { (response) in
@@ -275,13 +275,13 @@ class MainViewController: UIViewController {
         df.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         // All Unit types
-        let countPerMinute:HKUnit = HKUnit(from: "count/min")
-        let heightUnit:HKUnit = HKUnit(from: "ft")
-        let bloodPressureSysUnit:HKUnit = HKUnit(from: "mmHg")
-        let pounds:HKUnit = HKUnit(from: "lb")
-        let fahrenheit:HKUnit = HKUnit(from: "degF")
-        let calorie:HKUnit = HKUnit(from: "kcal")
-        let count:HKUnit = HKUnit(from: "count")
+//        let countPerMinute:HKUnit = HKUnit(from: "count/min")
+//        let heightUnit:HKUnit = HKUnit(from: "ft")
+//        let bloodPressureSysUnit:HKUnit = HKUnit(from: "mmHg")
+//        let pounds:HKUnit = HKUnit(from: "lb")
+//        let fahrenheit:HKUnit = HKUnit(from: "degF")
+//        let calorie:HKUnit = HKUnit(from: "kcal")
+//        let count:HKUnit = HKUnit(from: "count")
 
         
         // Refactoring code here...
@@ -298,7 +298,7 @@ class MainViewController: UIViewController {
         // Get Height data
         getHeightData(completion: { (heightData) in
             for data in heightData! {
-                let heightModel = HeightData(height: data.quantity.doubleValue(for: heightUnit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let heightModel = HeightData(height: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.heightArrayData.append(heightModel)
             }
             heightSet = true
@@ -307,7 +307,7 @@ class MainViewController: UIViewController {
         // Blood Pressure Systolic
         getBloodPressureSystolicData(completion: { (bloodPressureSysRawData) in
             for data in bloodPressureSysRawData! {
-                let bloodPressureSysModel = BloodPressureSystolicData(value: data.quantity.doubleValue(for: bloodPressureSysUnit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let bloodPressureSysModel = BloodPressureSystolicData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.bloodPressureSystolicArrayData.append(bloodPressureSysModel)
             }
             bloodPressureSystolicSet = true
@@ -316,7 +316,7 @@ class MainViewController: UIViewController {
         // Blood Pressure Diastolic
         getBloodPressureDiastolicData(completion: { (bloodPressureDiastolicRawData) in
             for data in bloodPressureDiastolicRawData! {
-                let bloodPressureDiastolicModel = BloodPressureDiastolicData(value: data.quantity.doubleValue(for: bloodPressureSysUnit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let bloodPressureDiastolicModel = BloodPressureDiastolicData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.bloodPressureDiastolicArrayData.append(bloodPressureDiastolicModel)
             }
             bloodPressureDiastolicSet = true
@@ -325,7 +325,7 @@ class MainViewController: UIViewController {
         // Body Mass
         getBodyMassData(completion: { (bodyMassRawData) in
             for data in bodyMassRawData! {
-                let bodyMassModel = BodyMassData(value: data.quantity.doubleValue(for: pounds), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let bodyMassModel = BodyMassData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.bodyMassArrayData.append(bodyMassModel)
             }
             bodyMassSet = true
@@ -334,7 +334,7 @@ class MainViewController: UIViewController {
         // Body Temperature
         getBodyTemperatureData(completion: { (bodyTemperatureRawData) in
             for data in bodyTemperatureRawData! {
-                let bodyTemperatureModel = BodyTemperatureData(value: data.quantity.doubleValue(for: fahrenheit), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let bodyTemperatureModel = BodyTemperatureData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.bodyTemperatureArrayData.append(bodyTemperatureModel)
             }
             bodyTemperatureSet = true
@@ -343,7 +343,7 @@ class MainViewController: UIViewController {
         // Energy burned
         getActiveEnergyBurnedData(completion: { (activeEnergyBurnedRawData) in
             for data in activeEnergyBurnedRawData! {
-                let activeEnergyBurnedModel = ActiveEnergyBurnedData(value: data.quantity.doubleValue(for: calorie), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let activeEnergyBurnedModel = ActiveEnergyBurnedData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.activeEnergyBurnedArrayData.append(activeEnergyBurnedModel)
             }
             activeEnergyBurnedSet = true
@@ -352,7 +352,7 @@ class MainViewController: UIViewController {
         // Lean Body Mass
         getLeanBodyMassData(completion: { (leanBodyMassRawData) in
             for data in leanBodyMassRawData! {
-                let leanBodyMassModel = LeanBodyMassData(value: data.quantity.doubleValue(for: pounds), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let leanBodyMassModel = LeanBodyMassData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.leanBodyMassArrayData.append(leanBodyMassModel)
             }
             leanBodyMassSet = true
@@ -361,7 +361,7 @@ class MainViewController: UIViewController {
         // Respiratory Rate
         getRespiratoryRateData(completion: { (respiratoryRateRawData) in
             for data in respiratoryRateRawData! {
-                let respiratoryRateModel = RespiratoryRateData(value: data.quantity.doubleValue(for: countPerMinute), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let respiratoryRateModel = RespiratoryRateData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.respiratoryRateArrayData.append(respiratoryRateModel)
             }
             respiratoryRateSet = true
@@ -370,7 +370,7 @@ class MainViewController: UIViewController {
         // Resting Heart Rate
         getRestingHeartRateData(completion: { (restingHeartRateRawData) in
             for data in restingHeartRateRawData! {
-                let restingHeartRateModel = RestingHeartRateData(value: data.quantity.doubleValue(for: countPerMinute), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let restingHeartRateModel = RestingHeartRateData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.restingHeartRateArrayData.append(restingHeartRateModel)
             }
             restingHeartRateSet = true
@@ -380,7 +380,7 @@ class MainViewController: UIViewController {
         getStepCountData(completion: { (stepCountRawData) in
             
             for data in stepCountRawData! {
-                let stepCountModel = StepCountData(value: data.quantity.doubleValue(for: count), quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
+                let stepCountModel = StepCountData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate), metadata: "\(data.metadata)", uuid: "\(data.uuid)", source: "\(data.source)", device: "\(data.device)")
                 self.stepCountArrayData.append(stepCountModel)
             }
             stepCountSet = true

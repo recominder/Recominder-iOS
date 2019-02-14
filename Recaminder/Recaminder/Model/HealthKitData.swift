@@ -39,7 +39,7 @@ struct HealthKitData: Encodable {
 }
 
 struct HeartRate: Encodable {
-    var rate: Double
+    var rate: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -48,7 +48,7 @@ struct HeartRate: Encodable {
     var source: String
     var device: String
     
-    init(rate: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(rate: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.rate = rate
         self.quantityType = quantityType
         self.startDate = startDate
@@ -61,7 +61,7 @@ struct HeartRate: Encodable {
 }
 
 struct HeightData: Encodable {
-    var height: Double
+    var height: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -70,7 +70,7 @@ struct HeightData: Encodable {
     var source: String
     var device: String
     
-    init(height: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(height: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.height = height
         self.quantityType = quantityType
         self.startDate = startDate
@@ -83,7 +83,7 @@ struct HeightData: Encodable {
 }
 
 struct BloodPressureSystolicData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -92,7 +92,7 @@ struct BloodPressureSystolicData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -105,7 +105,7 @@ struct BloodPressureSystolicData: Encodable {
 }
 
 struct BloodPressureDiastolicData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -114,7 +114,7 @@ struct BloodPressureDiastolicData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -127,7 +127,7 @@ struct BloodPressureDiastolicData: Encodable {
 }
 
 struct BodyMassData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -136,7 +136,7 @@ struct BodyMassData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -149,7 +149,7 @@ struct BodyMassData: Encodable {
 }
 
 struct BodyTemperatureData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -158,7 +158,7 @@ struct BodyTemperatureData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -171,7 +171,7 @@ struct BodyTemperatureData: Encodable {
 }
 
 struct ActiveEnergyBurnedData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -180,7 +180,7 @@ struct ActiveEnergyBurnedData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -193,7 +193,7 @@ struct ActiveEnergyBurnedData: Encodable {
 }
 
 struct LeanBodyMassData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -202,7 +202,7 @@ struct LeanBodyMassData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -215,7 +215,7 @@ struct LeanBodyMassData: Encodable {
 }
 
 struct RespiratoryRateData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -224,7 +224,7 @@ struct RespiratoryRateData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -237,7 +237,7 @@ struct RespiratoryRateData: Encodable {
 }
 
 struct RestingHeartRateData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -246,7 +246,7 @@ struct RestingHeartRateData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
@@ -259,7 +259,7 @@ struct RestingHeartRateData: Encodable {
 }
 
 struct StepCountData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
@@ -268,7 +268,7 @@ struct StepCountData: Encodable {
     var source: String
     var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
