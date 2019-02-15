@@ -221,7 +221,7 @@ class NetworkManager {
             guard let data = data else {
                 return completion(Result.failure(EndPointError.noData))
             }
-            print("Data: ", data)
+            print("Data: ", data.base64EncodedString())
             
             // Attempt to decode the data.
             guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
