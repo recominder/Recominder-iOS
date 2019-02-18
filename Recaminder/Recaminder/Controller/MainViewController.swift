@@ -63,7 +63,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    let daysBack = -30
+    let daysBack = -7
     
     func addAnimations() {
         view.addSubview(transparentView)
@@ -179,13 +179,17 @@ class MainViewController: UIViewController {
     
     func exportAllData() {
         // Code for the most inner nested to export all the data as JSON
-        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
+//        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
+        
+        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
         
         let jsonData = try? JSONEncoder().encode(healthKitData)
         
 //        let jsonString = String(data: jsonData!, encoding: .utf8)!
 //        print("----------------\nData in JSON\n----------------\n",jsonString)
         print("Posting Data")
+        
+        checkDataSize(jsonData!)
 
         self.networkManager.postHeartData(jsonData!, { (response) in
             print(response)
@@ -194,6 +198,17 @@ class MainViewController: UIViewController {
             self.uploadAnimation.loopAnimation = false
             
         }) // End of pushing data to server
+    }
+    
+    func checkDataSize(_ json: Data) {
+        if let data = json as Data? {
+            print("There were \(data.count) bytes")
+            let bcf = ByteCountFormatter()
+            bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
+            bcf.countStyle = .file
+            let string = bcf.string(fromByteCount: Int64(data.count))
+            print("formatted result: \(string)")
+        }
     }
     
     func getAllHealthKitData() {
