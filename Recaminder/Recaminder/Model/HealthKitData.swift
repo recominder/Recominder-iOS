@@ -21,6 +21,7 @@ struct HealthKitData: Encodable {
     var respiratoryRateData: [RespiratoryRateData]
     var restingHeartRateData: [RestingHeartRateData]
     var stepCountData: [StepCountData]
+    var userId: String
     
     init(heartRateData:[HeartRate], heightData: [HeightData], bloodPressureSystolicData: [BloodPressureSystolicData], bloodPressureDiastolicData: [BloodPressureDiastolicData], bodyMassData: [BodyMassData], bodyTemperatureData: [BodyTemperatureData], activeEnergyBurnedData: [ActiveEnergyBurnedData], leanBodyMassData: [LeanBodyMassData], respiratoryRateData: [RespiratoryRateData], restingHeartRateData: [RestingHeartRateData], stepCountData: [StepCountData]) {
         
@@ -35,6 +36,7 @@ struct HealthKitData: Encodable {
         self.respiratoryRateData = respiratoryRateData
         self.restingHeartRateData = restingHeartRateData
         self.stepCountData = stepCountData
+        self.userId = UserDefaults.standard.dictionary(forKey: "uid")!["uid"] as! String
     }
 }
 

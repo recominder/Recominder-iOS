@@ -63,7 +63,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    let daysBack = -7
+    let daysBack = -30
     
     func addAnimations() {
         view.addSubview(transparentView)
@@ -99,9 +99,10 @@ class MainViewController: UIViewController {
         uploadAnimation.play{ (finished) in
             // Do Something
             self.progressBarAnimation.play(fromProgress: 0.5, toProgress: 1.0, withCompletion:{ (bool) in
-                self.dismiss(animated: true, completion: {
-                    // TODO: Present Next View
-                })
+//                self.dismiss(animated: true, completion: {
+//                    // TODO: Present Next View
+//                })
+                self.present(PresentDataVC(), animated: true)
             })
             self.finishedUploadAnimation.isHidden = false
             self.finishedUploadAnimation.play{ (finished) in
@@ -179,20 +180,20 @@ class MainViewController: UIViewController {
     
     func exportAllData() {
         // Code for the most inner nested to export all the data as JSON
-//        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
+        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
         
-        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
+//        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
         
         let jsonData = try? JSONEncoder().encode(healthKitData)
         
 //        let jsonString = String(data: jsonData!, encoding: .utf8)!
 //        print("----------------\nData in JSON\n----------------\n",jsonString)
-        print("Posting Data")
+//        print("Posting Data", jsonData?.base64EncodedString())
         
         checkDataSize(jsonData!)
 
         self.networkManager.postHeartData(jsonData!, { (response) in
-            print(response)
+//            print(response)
             
             // Animation will stop (will trigger next animation)
             self.uploadAnimation.loopAnimation = false
@@ -207,7 +208,7 @@ class MainViewController: UIViewController {
             bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
             bcf.countStyle = .file
             let string = bcf.string(fromByteCount: Int64(data.count))
-            print("formatted result: \(string)")
+//            print("formatted result: \(string)")
         }
     }
     
