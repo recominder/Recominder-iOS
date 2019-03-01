@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -121,7 +122,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }()
     
     // Error label
-    let errorLabel: UITextView = {
+    var errorLabel: UITextView = {
         var title = UITextView()
         title.text = "Error"
         title.font = UIFont(name: "AvenirNext-Bold", size: 15)
@@ -133,7 +134,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         title.isScrollEnabled = false
         title.isHidden = true
         return title
-    }()
+        }()
+    
+    // This is what's going to be turning the error label visible
+    var errorString = "" {
+        didSet {
+            errorLabel.text = errorString
+            errorLabel.isHidden = false
+        }
+    }
     
     // Background Image
     private var background: UIImageView = {
@@ -149,7 +158,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         return newImage
     }()
     
-    
+    // Animation when loggin in.
+    var verifyingAnimation = LOTAnimationView(name: "login")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,6 +175,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         // Programmatically adding parameters
         loadLogIn()
+        
+        view.addSubview(verifyingAnimation)
+        verifyingAnimation.isHidden = true
+        verifyingAnimation.centerOfView(to: view)
+        verifyingAnimation.viewConstantRatio(widthToHeightRatio: 1, width: .init(width: 200, height: 200))
     }
     
     func loadLogIn() {
@@ -286,14 +301,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 // Check if password is correct
                 if passwordTextField.text != confirmPasswordTextField.text {
                     incorrectPassword()
-                    displayError("Passwords don't match")
+                    errorString = "Passwords don't match"
                 }
                 else {
+                    errorString = "Logging in!"
                     // TODO: Handle Signup
                      signUp(emailTextField.text!, passwordTextField.text!)
                 }
             }
             else {
+                errorString = "Logging in!"
                 // TODO: Handle Log in
                  logIn(emailTextField.text!, passwordTextField.text!)
             }
@@ -301,7 +318,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         else {
             // Animation for empty fields
             incorrectPassword(true)
-            displayError("Input fields empty")
+            errorString = "Input fields empty"
         }
     }
     
@@ -309,38 +326,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     // SignUp Netowking method. Will POST email and password to sign up.
     func signUp(_ email: String, _ password: String) {
+        verifyingAnimation.isHidden = false
+        verifyingAnimation.loopAnimation = true
+        verifyingAnimation.play { (bool) in
+            self.verifyingAnimation.isHidden = true
+        }
         print("signing up")
+        continueButton.isEnabled = false
         networkManager.signUpPost(email, password) { result in
+            self.verifyingAnimation.loopAnimation = false
             switch result {
             case let .success(result):
                 // TODO: Do something with result (which is probably going to be the response)
+                self.errorString = "Sending Data!"
                 self.nextViewController()
-                self.displayError("Sending Data!")
                 print("sign up: ",result)
             case let .failedSigning(result):
                 print("Failed Sign up: ", result)
-                self.displayError("\(result)")
+                self.errorString = "\(result)"
             case let .failure(error):
-                print(error)
+                self.errorString = "\(error.localizedDescription)"
             }
         }
     }
     
     // Login Networking Method. Will POST email and password to Login.
     func logIn(_ email: String, _ password: String) {
+        verifyingAnimation.isHidden = false
+        verifyingAnimation.loopAnimation = true
+        verifyingAnimation.play { (bool) in
+            self.verifyingAnimation.isHidden = true
+        }
         print("logging in")
+        continueButton.isEnabled = false
         networkManager.logInPost(email, password) { result in
+            self.verifyingAnimation.loopAnimation = false
             switch result {
             case let .success(result):
                 // TODO: Do something with result (which is probably going to be the response)
                 print("log in result: ",result)
                 self.nextViewController()
-                self.displayError("Sending Data!")
+                self.errorString = "Sending Data!"
             case let .failedSigning(result):
                 print("Failed Log in: ", result)
-                self.displayError("\(result)")
+                self.errorString = "\(result)"
             case let .failure(error):
-                print(error)
+                self.errorString = "\(error.localizedDescription)"
             }
         }
     }
@@ -352,16 +383,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         self.present(mainVC, animated: true, completion: nil)
     }
     
-    // Add error label with string for the error
-    func displayError(_ text: String) {
-        errorLabel.isHidden = false
-        errorLabel.text = text
-    }
+//    // Add error label with string for the error
+//    func displayError(_ text: String) {
+//        errorLabel.isHidden = false
+//        errorLabel.text = text
+//    }
     
     // Action when begins to edit any textfield
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = #colorLiteral(red: 0.9328219295, green: 0.6075096726, blue: 0.6003844142, alpha: 1)
         errorLabel.isHidden = true
+        continueButton.isEnabled = true
     }
     
     // Hide keyboard when return is pressed on any keyboard
