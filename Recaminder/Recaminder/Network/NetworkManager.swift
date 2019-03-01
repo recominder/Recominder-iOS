@@ -117,7 +117,7 @@ class NetworkManager {
     func signUpPost(_ email: String,_ password: String,_ completion: @escaping (Result<String>) -> Void) {
         var signupRequest = makePostRequest(for: .signup)
         
-        let data = ["email":"\(email)","password":"\(password)"]
+        let data = ["email":"\(email)","password":"\(password)", "passwordConf":"\(password)"]
         let jsonData = try? JSONEncoder().encode(data)
 //        let jsonString = String(data: jsonData!, encoding: .utf8)!
         
@@ -152,6 +152,9 @@ class NetworkManager {
             
             // Return the result with the completion handler.
             DispatchQueue.main.async {
+                UserDefaults.standard.set(["uid":"\(signupSuccess)"], forKey: "uid")
+                UserDefaults.standard.synchronize()
+                
                 // Returns ID if successful
                 completion(Result.success("\(signupSuccess)"))
             }
@@ -197,6 +200,8 @@ class NetworkManager {
             
             // Return the result with the completion handler.
             DispatchQueue.main.async {
+                UserDefaults.standard.set(["uid":"\(loginSuccess)"], forKey: "uid")
+                UserDefaults.standard.synchronize()
                 // Returns ID if Successful
                 completion(Result.success("\(loginSuccess)"))
             }
@@ -221,7 +226,7 @@ class NetworkManager {
             guard let data = data else {
                 return completion(Result.failure(EndPointError.noData))
             }
-            print("Data: ", data)
+//            print("Data: ", data.base64EncodedString())
             
             // Attempt to decode the data.
             guard let result = try? JSONSerialization.jsonObject(with: data, options: []) else {
@@ -229,7 +234,7 @@ class NetworkManager {
             }
             
             if let result = result as? [String: Any] {
-                print("\n\n------------------------\n\nResponse heart rate data: ",result)
+//                print("\n\n------------------------\n\nResponse heart rate data: ",result)
             }
 
 //            if let result = result as? [String: Any] {

@@ -21,6 +21,7 @@ struct HealthKitData: Encodable {
     var respiratoryRateData: [RespiratoryRateData]
     var restingHeartRateData: [RestingHeartRateData]
     var stepCountData: [StepCountData]
+    var userId: String
     
     init(heartRateData:[HeartRate], heightData: [HeightData], bloodPressureSystolicData: [BloodPressureSystolicData], bloodPressureDiastolicData: [BloodPressureDiastolicData], bodyMassData: [BodyMassData], bodyTemperatureData: [BodyTemperatureData], activeEnergyBurnedData: [ActiveEnergyBurnedData], leanBodyMassData: [LeanBodyMassData], respiratoryRateData: [RespiratoryRateData], restingHeartRateData: [RestingHeartRateData], stepCountData: [StepCountData]) {
         
@@ -35,247 +36,166 @@ struct HealthKitData: Encodable {
         self.respiratoryRateData = respiratoryRateData
         self.restingHeartRateData = restingHeartRateData
         self.stepCountData = stepCountData
+        self.userId = UserDefaults.standard.dictionary(forKey: "uid")!["uid"] as! String
     }
 }
 
 struct HeartRate: Encodable {
-    var rate: Double
+    var rate: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
+
     
-    init(rate: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(rate: String, quantityType: String, startDate: String, endDate: String) {
         self.rate = rate
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
+
     }
 }
 
 struct HeightData: Encodable {
-    var height: Double
+    var height: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
+
     
-    init(height: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(height: String, quantityType: String, startDate: String, endDate: String) {
         self.height = height
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
+
     }
 }
 
 struct BloodPressureSystolicData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
+
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct BloodPressureDiastolicData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
-    
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct BodyMassData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct BodyTemperatureData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct ActiveEnergyBurnedData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct LeanBodyMassData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
+
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct RespiratoryRateData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct RestingHeartRateData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
     
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
 
 struct StepCountData: Encodable {
-    var value: Double
+    var value: String
     var quantityType: String
     var startDate: String
     var endDate: String
-    var metadata: String
-    var uuid: String
-    var source: String
-    var device: String
-    
-    init(value: Double, quantityType: String, startDate: String, endDate: String, metadata: String, uuid: String, source: String, device: String) {
+
+    init(value: String, quantityType: String, startDate: String, endDate: String) {
         self.value = value
         self.quantityType = quantityType
         self.startDate = startDate
         self.endDate = endDate
-        self.metadata = metadata
-        self.uuid = uuid
-        self.source = source
-        self.device = device
     }
 }
