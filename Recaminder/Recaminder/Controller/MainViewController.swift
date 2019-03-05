@@ -12,6 +12,7 @@
 import UIKit
 import HealthKit
 import Lottie
+import Alamofire
 
 class MainViewController: UIViewController {
     // Uploading Animation
@@ -35,7 +36,7 @@ class MainViewController: UIViewController {
     
     // var trainers: [Trainer] = []
     // var health: Health?
-    var networkManager = NetworkManager()
+//    var networkManager = NetworkManager()
     let healthStore = HKHealthStore()
     
     // Arrays for all data types
@@ -188,23 +189,46 @@ class MainViewController: UIViewController {
         // Code for the most inner nested to export all the data as JSON
         let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bodyMassData: bodyMassArrayData,activeEnergyBurnedData: activeEnergyBurnedArrayData, distanceWalkingRunning:distanceWalkingRunningArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
         
-//        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
-        
         let jsonData = try? JSONEncoder().encode(healthKitData)
+        let urlString = URL(string: "https://recominder-api.herokuapp.com/data")
+//        let data = ["email": emailTextField.text!, "password": passwordTextField.text!]
         
-//        let jsonString = String(data: jsonData!, encoding: .utf8)!
-//        print("----------------\nData in JSON\n----------------\n",jsonString)
-//        print("Posting Data", jsonData?.base64EncodedString())
+        var request = URLRequest(url: urlString!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData!
         
-        checkDataSize(jsonData!)
-
-        self.networkManager.postHeartData(jsonData!, { (response) in
-//            print(response)
-            
-            // Animation will stop (will trigger next animation)
-            self.uploadAnimation.loopAnimation = false
-            
-        }) // End of pushing data to server
+        AF.request(request).responseJSON {
+            response in
+            switch response.result {
+            case .success(let JSON):
+                // So that I can parse the response
+                guard let responseJson = JSON as? [String:Any] else { return }
+                self.uploadAnimation.loopAnimation = false
+                
+                break
+            case .failure(let error):
+                
+                print(error)
+            }
+        }
+////        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
+//
+//        let jsonData = try? JSONEncoder().encode(healthKitData)
+//
+////        let jsonString = String(data: jsonData!, encoding: .utf8)!
+////        print("----------------\nData in JSON\n----------------\n",jsonString)
+////        print("Posting Data", jsonData?.base64EncodedString())
+//
+//        checkDataSize(jsonData!)
+//
+//        self.networkManager.postHeartData(jsonData!, { (response) in
+////            print(response)
+//
+//            // Animation will stop (will trigger next animation)
+//            self.uploadAnimation.loopAnimation = false
+//
+//        }) // End of pushing data to server
     }
     
     func checkDataSize(_ json: Data) {

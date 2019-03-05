@@ -10,6 +10,8 @@ import UIKit
 import Lottie
 import HealthKit
 
+// This is a VC I use to test future possible features
+
 class TestVC: UIViewController {
     
     // Progress bar animation

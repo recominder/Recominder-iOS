@@ -118,11 +118,11 @@
 		F374402F2203BE9000F06EE8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */,
 				F374401D2203B30D00F06EE8 /* MainViewController.swift */,
 				F3255E032227121D00411C70 /* PresentData.swift */,
 				F3F6063C222E3A9100AA5646 /* TableViewCell.swift */,
 				F394428D22139C59005A8214 /* TestViewController.swift */,
-				F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
