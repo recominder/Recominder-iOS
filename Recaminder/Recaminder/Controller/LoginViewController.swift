@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -110,7 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         button.addTarget(self, action: #selector(continueButtonPressed), for: .touchUpInside)
         return button
     }()
-
+    
     // Register button
     private let logInOrSignUpButton: UIButton = {
         let button = UIButton()
@@ -134,7 +135,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         title.isScrollEnabled = false
         title.isHidden = true
         return title
-        }()
+    }()
     
     // This is what's going to be turning the error label visible
     var errorString = "" {
@@ -273,7 +274,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         animation2.autoreverses = true
         animation2.fromValue = NSValue(cgPoint: CGPoint(x: confirmPasswordViewContainer.center.x - 10, y: confirmPasswordViewContainer.center.y))
         animation2.toValue = NSValue(cgPoint: CGPoint(x: confirmPasswordViewContainer.center.x + 10, y: confirmPasswordViewContainer.center.y))
-
+        
         
         confirmPasswordTextField.textColor = #colorLiteral(red: 0.9599618316, green: 0.275388211, blue: 0.4092237353, alpha: 1)
         confirmPasswordViewContainer.layer.add(animation2, forKey: "position")
@@ -304,15 +305,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                     errorString = "Passwords don't match"
                 }
                 else {
-                    errorString = "Logging in!"
+                    errorString = "Signing in!"
                     // TODO: Handle Signup
-                     signUp(emailTextField.text!, passwordTextField.text!)
+                    signUp()
                 }
             }
             else {
                 errorString = "Logging in!"
                 // TODO: Handle Log in
-                 logIn(emailTextField.text!, passwordTextField.text!)
+                logIn()
             }
         }
         else {
@@ -322,59 +323,122 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         }
     }
     
-    let networkManager = NetworkManager()
     
-    // SignUp Netowking method. Will POST email and password to sign up.
-    func signUp(_ email: String, _ password: String) {
-        verifyingAnimation.isHidden = false
-        verifyingAnimation.loopAnimation = true
-        verifyingAnimation.play { (bool) in
-            self.verifyingAnimation.isHidden = true
-        }
-        print("signing up")
-        continueButton.isEnabled = false
-        networkManager.signUpPost(email, password) { result in
-            self.verifyingAnimation.loopAnimation = false
-            switch result {
-            case let .success(result):
-                // TODO: Do something with result (which is probably going to be the response)
-                self.errorString = "Sending Data!"
-                self.nextViewController()
-                print("sign up: ",result)
-            case let .failedSigning(result):
-                print("Failed Sign up: ", result)
-                self.errorString = "\(result)"
-            case let .failure(error):
-                self.errorString = "\(error.localizedDescription)"
+    func signUp() {
+        let urlString = "https://recominder-api.herokuapp.com/register"
+        let data = ["email": emailTextField.text!, "password": passwordTextField.text!, "passwordConf": passwordTextField.text!]
+        AF.request(urlString, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil).responseJSON {
+            response in
+            switch response.result {
+            case .success(let JSON):
+                // So that I can parse the response
+                guard let responseJson = JSON as? [String:String] else { return }
+                if responseJson["result"] == "Unsuccessful" {
+                    // Handle Error Message
+                    print(responseJson["message"])
+                    self.errorString = responseJson["message"]!
+                }
+                else {
+                    // If the SignUp was successful
+                    let uid = responseJson["userId"]!
+                    UserDefaults.standard.set(["uid":"\(uid)"], forKey: "uid")
+                    UserDefaults.standard.synchronize()
+                    print("Successful Sign up. UID:", uid)
+                    self.nextViewController()
+                }
+                
+                break
+            case .failure(let error):
+                
+                print(error)
             }
         }
     }
     
-    // Login Networking Method. Will POST email and password to Login.
-    func logIn(_ email: String, _ password: String) {
-        verifyingAnimation.isHidden = false
-        verifyingAnimation.loopAnimation = true
-        verifyingAnimation.play { (bool) in
-            self.verifyingAnimation.isHidden = true
-        }
-        print("logging in")
-        continueButton.isEnabled = false
-        networkManager.logInPost(email, password) { result in
-            self.verifyingAnimation.loopAnimation = false
-            switch result {
-            case let .success(result):
-                // TODO: Do something with result (which is probably going to be the response)
-                print("log in result: ",result)
-                self.nextViewController()
-                self.errorString = "Sending Data!"
-            case let .failedSigning(result):
-                print("Failed Log in: ", result)
-                self.errorString = "\(result)"
-            case let .failure(error):
-                self.errorString = "\(error.localizedDescription)"
+    func logIn() {
+        let urlString = "https://recominder-api.herokuapp.com/login"
+        let data = ["email": emailTextField.text!, "password": passwordTextField.text!]
+        AF.request(urlString, method: .post, parameters: data, encoding: JSONEncoding.default, headers: nil).responseJSON {
+            response in
+            switch response.result {
+            case .success(let JSON):
+                // So that I can parse the response
+                guard let responseJson = JSON as? [String:String] else { return }
+                if responseJson["result"] == "Unsuccessful" {
+                    // Handle Error Message
+                    print(responseJson["message"])
+                    self.errorString = responseJson["message"]!
+                }
+                else {
+                    // If the SignUp was successful
+                    let uid = responseJson["userId"]!
+                    UserDefaults.standard.set(["uid":"\(uid)"], forKey: "uid")
+                    UserDefaults.standard.synchronize()
+                    print("Successful log in. UID:", uid)
+                    self.nextViewController()
+                }
+                
+                break
+            case .failure(let error):
+                
+                print(error)
             }
         }
     }
+    
+    //    let networkManager = NetworkManager()
+    //
+    //    // SignUp Netowking method. Will POST email and password to sign up.
+    //    func signUp(_ email: String, _ password: String) {
+    //        verifyingAnimation.isHidden = false
+    //        verifyingAnimation.loopAnimation = true
+    //        verifyingAnimation.play { (bool) in
+    //            self.verifyingAnimation.isHidden = true
+    //        }
+    //        print("signing up")
+    //        continueButton.isEnabled = false
+    //        networkManager.signUpPost(email, password) { result in
+    //            self.verifyingAnimation.loopAnimation = false
+    //            switch result {
+    //            case let .success(result):
+    //                // TODO: Do something with result (which is probably going to be the response)
+    //                self.errorString = "Sending Data!"
+    //                self.nextViewController()
+    //                print("sign up: ",result)
+    //            case let .failedSigning(result):
+    //                print("Failed Sign up: ", result)
+    //                self.errorString = "\(result)"
+    //            case let .failure(error):
+    //                self.errorString = "\(error.localizedDescription)"
+    //            }
+    //        }
+    //    }
+    //
+    //    // Login Networking Method. Will POST email and password to Login.
+    //    func logIn(_ email: String, _ password: String) {
+    //        verifyingAnimation.isHidden = false
+    //        verifyingAnimation.loopAnimation = true
+    //        verifyingAnimation.play { (bool) in
+    //            self.verifyingAnimation.isHidden = true
+    //        }
+    //        print("logging in")
+    //        continueButton.isEnabled = false
+    //        networkManager.logInPost(email, password) { result in
+    //            self.verifyingAnimation.loopAnimation = false
+    //            switch result {
+    //            case let .success(result):
+    //                // TODO: Do something with result (which is probably going to be the response)
+    //                print("log in result: ",result)
+    //                self.nextViewController()
+    //                self.errorString = "Sending Data!"
+    //            case let .failedSigning(result):
+    //                print("Failed Log in: ", result)
+    //                self.errorString = "\(result)"
+    //            case let .failure(error):
+    //                self.errorString = "\(error.localizedDescription)"
+    //            }
+    //        }
+    //    }
     
     // Push next view to load all the data to the server
     func nextViewController() {
@@ -383,11 +447,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         self.present(mainVC, animated: true, completion: nil)
     }
     
-//    // Add error label with string for the error
-//    func displayError(_ text: String) {
-//        errorLabel.isHidden = false
-//        errorLabel.text = text
-//    }
+    //    // Add error label with string for the error
+    //    func displayError(_ text: String) {
+    //        errorLabel.isHidden = false
+    //        errorLabel.text = text
+    //    }
     
     // Action when begins to edit any textfield
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -404,7 +468,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             nextField.becomeFirstResponder()
         } else {
             // Not found, sign in or log in
-//            textField.resignFirstResponder()
+            //            textField.resignFirstResponder()
             continueButtonPressed()
         }
         // Do

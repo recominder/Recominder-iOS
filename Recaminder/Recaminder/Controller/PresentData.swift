@@ -87,6 +87,7 @@ extension PresentDataVC: UITableViewDataSource {
         cell.titleLabel.text = currentDataPoint.title
         cell.amountLabel.text = currentDataPoint.amount
         cell.currentImageView.image = currentDataPoint.img
+        cell.selectionStyle = .none
         return cell
     }
     
