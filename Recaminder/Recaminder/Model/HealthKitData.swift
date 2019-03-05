@@ -12,31 +12,28 @@ import UIKit
 struct HealthKitData: Encodable {
     var heartRateData: [HeartRate]
     var heightData: [HeightData]
-    var bloodPressureSystolicData: [BloodPressureSystolicData]
-    var bloodPressureDiastolicData: [BloodPressureDiastolicData]
     var bodyMassData: [BodyMassData]
-    var bodyTemperatureData: [BodyTemperatureData]
     var activeEnergyBurnedData: [ActiveEnergyBurnedData]
-    var leanBodyMassData: [LeanBodyMassData]
-    var respiratoryRateData: [RespiratoryRateData]
+    var distanceWalkingRunning: [DistanceWalkingRunning]
     var restingHeartRateData: [RestingHeartRateData]
     var stepCountData: [StepCountData]
     var userId: String
     
-    init(heartRateData:[HeartRate], heightData: [HeightData], bloodPressureSystolicData: [BloodPressureSystolicData], bloodPressureDiastolicData: [BloodPressureDiastolicData], bodyMassData: [BodyMassData], bodyTemperatureData: [BodyTemperatureData], activeEnergyBurnedData: [ActiveEnergyBurnedData], leanBodyMassData: [LeanBodyMassData], respiratoryRateData: [RespiratoryRateData], restingHeartRateData: [RestingHeartRateData], stepCountData: [StepCountData]) {
+    init(heartRateData:[HeartRate], heightData: [HeightData], bodyMassData: [BodyMassData], activeEnergyBurnedData: [ActiveEnergyBurnedData], distanceWalkingRunning: [DistanceWalkingRunning], restingHeartRateData: [RestingHeartRateData], stepCountData: [StepCountData]) {
         
         self.heartRateData = heartRateData
         self.heightData = heightData
-        self.bloodPressureSystolicData = bloodPressureSystolicData
-        self.bloodPressureDiastolicData = bloodPressureDiastolicData
         self.bodyMassData = bodyMassData
-        self.bodyTemperatureData = bodyTemperatureData
         self.activeEnergyBurnedData = activeEnergyBurnedData
-        self.leanBodyMassData = leanBodyMassData
-        self.respiratoryRateData = respiratoryRateData
+        self.distanceWalkingRunning = distanceWalkingRunning
         self.restingHeartRateData = restingHeartRateData
         self.stepCountData = stepCountData
         self.userId = UserDefaults.standard.dictionary(forKey: "uid")!["uid"] as! String
+        //        self.respiratoryRateData = respiratoryRateData
+        //        self.leanBodyMassData = leanBodyMassData
+        //        self.bodyTemperatureData = bodyTemperatureData
+        //        self.bloodPressureSystolicData = bloodPressureSystolicData
+        //        self.bloodPressureDiastolicData = bloodPressureDiastolicData
     }
 }
 
@@ -72,34 +69,34 @@ struct HeightData: Encodable {
     }
 }
 
-struct BloodPressureSystolicData: Encodable {
-    var value: String
-    var quantityType: String
-    var startDate: String
-    var endDate: String
-
-    
-    init(value: String, quantityType: String, startDate: String, endDate: String) {
-        self.value = value
-        self.quantityType = quantityType
-        self.startDate = startDate
-        self.endDate = endDate
-    }
-}
-
-struct BloodPressureDiastolicData: Encodable {
-    var value: String
-    var quantityType: String
-    var startDate: String
-    var endDate: String
-
-    init(value: String, quantityType: String, startDate: String, endDate: String) {
-        self.value = value
-        self.quantityType = quantityType
-        self.startDate = startDate
-        self.endDate = endDate
-    }
-}
+//struct BloodPressureSystolicData: Encodable {
+//    var value: String
+//    var quantityType: String
+//    var startDate: String
+//    var endDate: String
+//
+//
+//    init(value: String, quantityType: String, startDate: String, endDate: String) {
+//        self.value = value
+//        self.quantityType = quantityType
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
+//}
+//
+//struct BloodPressureDiastolicData: Encodable {
+//    var value: String
+//    var quantityType: String
+//    var startDate: String
+//    var endDate: String
+//
+//    init(value: String, quantityType: String, startDate: String, endDate: String) {
+//        self.value = value
+//        self.quantityType = quantityType
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
+//}
 
 struct BodyMassData: Encodable {
     var value: String
@@ -115,7 +112,21 @@ struct BodyMassData: Encodable {
     }
 }
 
-struct BodyTemperatureData: Encodable {
+//struct BodyTemperatureData: Encodable {
+//    var value: String
+//    var quantityType: String
+//    var startDate: String
+//    var endDate: String
+//
+//    init(value: String, quantityType: String, startDate: String, endDate: String) {
+//        self.value = value
+//        self.quantityType = quantityType
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
+//}
+
+struct DistanceWalkingRunning: Encodable {
     var value: String
     var quantityType: String
     var startDate: String
@@ -143,34 +154,34 @@ struct ActiveEnergyBurnedData: Encodable {
     }
 }
 
-struct LeanBodyMassData: Encodable {
-    var value: String
-    var quantityType: String
-    var startDate: String
-    var endDate: String
+//struct LeanBodyMassData: Encodable {
+//    var value: String
+//    var quantityType: String
+//    var startDate: String
+//    var endDate: String
+//
+//
+//    init(value: String, quantityType: String, startDate: String, endDate: String) {
+//        self.value = value
+//        self.quantityType = quantityType
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
+//}
 
-    
-    init(value: String, quantityType: String, startDate: String, endDate: String) {
-        self.value = value
-        self.quantityType = quantityType
-        self.startDate = startDate
-        self.endDate = endDate
-    }
-}
-
-struct RespiratoryRateData: Encodable {
-    var value: String
-    var quantityType: String
-    var startDate: String
-    var endDate: String
-    
-    init(value: String, quantityType: String, startDate: String, endDate: String) {
-        self.value = value
-        self.quantityType = quantityType
-        self.startDate = startDate
-        self.endDate = endDate
-    }
-}
+//struct RespiratoryRateData: Encodable {
+//    var value: String
+//    var quantityType: String
+//    var startDate: String
+//    var endDate: String
+//
+//    init(value: String, quantityType: String, startDate: String, endDate: String) {
+//        self.value = value
+//        self.quantityType = quantityType
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
+//}
 
 struct RestingHeartRateData: Encodable {
     var value: String

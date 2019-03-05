@@ -26,6 +26,7 @@
 		F39442942213A7A8005A8214 /* progress.json in Resources */ = {isa = PBXBuildFile; fileRef = F39442932213A7A8005A8214 /* progress.json */; };
 		F39B2541220FE90100B71044 /* upload.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2540220FE90100B71044 /* upload.json */; };
 		F39B2543220FE95000B71044 /* finished.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2542220FE95000B71044 /* finished.json */; };
+		F3F6063D222E3A9100AA5646 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F6063C222E3A9100AA5646 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		F39442932213A7A8005A8214 /* progress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = progress.json; sourceTree = "<group>"; };
 		F39B2540220FE90100B71044 /* upload.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upload.json; sourceTree = "<group>"; };
 		F39B2542220FE95000B71044 /* finished.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = finished.json; sourceTree = "<group>"; };
+		F3F6063C222E3A9100AA5646 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				F374401D2203B30D00F06EE8 /* MainViewController.swift */,
 				F3255E032227121D00411C70 /* PresentData.swift */,
+				F3F6063C222E3A9100AA5646 /* TableViewCell.swift */,
 				F394428D22139C59005A8214 /* TestViewController.swift */,
 				F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */,
 			);
@@ -308,6 +311,7 @@
 				F374402E2203BE3B00F06EE8 /* Extensions.swift in Sources */,
 				F304EBBC220E8D3B004C88B4 /* LoginViewController.swift in Sources */,
 				F391C088220CCF1A00D47CED /* HealthKitData.swift in Sources */,
+				F3F6063D222E3A9100AA5646 /* TableViewCell.swift in Sources */,
 				F374401C2203B30D00F06EE8 /* AppDelegate.swift in Sources */,
 				F394428E22139C59005A8214 /* TestViewController.swift in Sources */,
 				F3891E66220AB74200C11DFA /* Trainer.swift in Sources */,
