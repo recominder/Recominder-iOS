@@ -41,13 +41,14 @@ class MainViewController: UIViewController {
     // Arrays for all data types
     var heartRateArrayData: [HeartRate] = []
     var heightArrayData: [HeightData] = []
-    var bloodPressureSystolicArrayData: [BloodPressureSystolicData] = []
-    var bloodPressureDiastolicArrayData: [BloodPressureDiastolicData] = []
+//    var bloodPressureSystolicArrayData: [BloodPressureSystolicData] = []
+//    var bloodPressureDiastolicArrayData: [BloodPressureDiastolicData] = []
     var bodyMassArrayData: [BodyMassData] = []
-    var bodyTemperatureArrayData: [BodyTemperatureData] = []
+//    var bodyTemperatureArrayData: [BodyTemperatureData] = []
     var activeEnergyBurnedArrayData: [ActiveEnergyBurnedData] = []
-    var leanBodyMassArrayData: [LeanBodyMassData] = []
-    var respiratoryRateArrayData: [RespiratoryRateData] = []
+    var distanceWalkingRunningArrayData: [DistanceWalkingRunning] = []
+//    var leanBodyMassArrayData: [LeanBodyMassData] = []
+//    var respiratoryRateArrayData: [RespiratoryRateData] = []
     var restingHeartRateArrayData: [RestingHeartRateData] = []
     var stepCountArrayData: [StepCountData] = []
     
@@ -55,7 +56,7 @@ class MainViewController: UIViewController {
     var countDownToAllData: Int = 0 {
         didSet {
             increaseProgressForAnimation()
-            if countDownToAllData == 11 {
+            if countDownToAllData == 7 {
                 // TODO: Create the all data model
                 print("----------------------------------\n\nAll Data is Collected\n\n--------------------------------------")
                 exportAllData()
@@ -138,26 +139,31 @@ class MainViewController: UIViewController {
         
         let heightType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
         
-        let bloodPressureSystolicType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodPressureSystolic)!
-        
-        let bloodPressureDiastolicType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodPressureDiastolic)!
-        
         let bodyMassType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-        
-        let bodyTemperatureType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyTemperature)!
         
         let activeEnergyBurnedType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
         
-        let leanBodyMassType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.leanBodyMass)!
-        
-        let respiratoryRateType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.respiratoryRate)!
+        let distanceWalkingRunning:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!
         
         let restingHeartRateType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.restingHeartRate)!
         
         let stepCountType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
         
+        // For now we don't use these.
+//        let bloodPressureSystolicType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodPressureSystolic)!
+//
+//        let bloodPressureDiastolicType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodPressureDiastolic)!
+//
+//        let bodyTemperatureType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyTemperature)!
+//
+//        let leanBodyMassType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.leanBodyMass)!
+//
+//        let respiratoryRateType:HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.respiratoryRate)!
+        
+
+        
         // Reading
-        let readingTypes:Set = Set([heartRateType, bloodPressureSystolicType, bloodPressureDiastolicType, bodyMassType, bodyTemperatureType, activeEnergyBurnedType, heightType, leanBodyMassType, respiratoryRateType, restingHeartRateType, stepCountType])
+        let readingTypes:Set = Set([heartRateType, bodyMassType, activeEnergyBurnedType, distanceWalkingRunning, heightType, restingHeartRateType, stepCountType])
         
         // Writing (not writing any data)
         //let writingTypes:Set = Set( [heartRateType, bloodPressureSystolicType, bloodPressureDiastolicType] )
@@ -180,7 +186,7 @@ class MainViewController: UIViewController {
     
     func exportAllData() {
         // Code for the most inner nested to export all the data as JSON
-        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bloodPressureSystolicData: bloodPressureSystolicArrayData, bloodPressureDiastolicData: bloodPressureDiastolicArrayData, bodyMassData: bodyMassArrayData, bodyTemperatureData: bodyTemperatureArrayData, activeEnergyBurnedData: activeEnergyBurnedArrayData, leanBodyMassData: leanBodyMassArrayData, respiratoryRateData: respiratoryRateArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
+        let healthKitData = HealthKitData(heartRateData: heartRateArrayData, heightData: heightArrayData, bodyMassData: bodyMassArrayData,activeEnergyBurnedData: activeEnergyBurnedArrayData, distanceWalkingRunning:distanceWalkingRunningArrayData, restingHeartRateData: restingHeartRateArrayData, stepCountData: stepCountArrayData)
         
 //        let healthKitData = HealthKitData(heartRateData: [], heightData: [], bloodPressureSystolicData: [], bloodPressureDiastolicData: [], bodyMassData: [], bodyTemperatureData: [], activeEnergyBurnedData: [], leanBodyMassData: [], respiratoryRateData: [], restingHeartRateData: [], stepCountData: [])
         
@@ -230,48 +236,28 @@ class MainViewController: UIViewController {
                 print("Height Check!")
             }
         }
-        var bloodPressureSystolicSet: Bool?{
-            didSet {
-                countDownToAllData += 1
-                print("Sys Check!")
-            }
-        }
-        var bloodPressureDiastolicSet: Bool?{
-            didSet {
-                countDownToAllData += 1
-                print("Dia Check!")
-            }
-        }
+
         var bodyMassSet: Bool?{
             didSet {
                 countDownToAllData += 1
                 print("Body Mass Check!")
             }
         }
-        var bodyTemperatureSet: Bool?{
-            didSet {
-                countDownToAllData += 1
-                print("Body Temp Check!")
-            }
-        }
+
         var activeEnergyBurnedSet: Bool?{
             didSet {
                 countDownToAllData += 1
                 print("Energy Burned Check!")
             }
         }
-        var leanBodyMassSet: Bool?{
+        
+        var distanceWalkingRunningSet: Bool?{
             didSet {
                 countDownToAllData += 1
-                print("Lean body mass Check!")
+                print("Resting heart rate Check!")
             }
         }
-        var respiratoryRateSet: Bool?{
-            didSet {
-                countDownToAllData += 1
-                print("Respiratory Rate Check!")
-            }
-        }
+        
         var restingHeartRateSet: Bool?{
             didSet {
                 countDownToAllData += 1
@@ -320,24 +306,6 @@ class MainViewController: UIViewController {
             heightSet = true
         })
         
-        // Blood Pressure Systolic
-        getBloodPressureSystolicData(completion: { (bloodPressureSysRawData) in
-            for data in bloodPressureSysRawData! {
-                let bloodPressureSysModel = BloodPressureSystolicData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
-                self.bloodPressureSystolicArrayData.append(bloodPressureSysModel)
-            }
-            bloodPressureSystolicSet = true
-        })
-        
-        // Blood Pressure Diastolic
-        getBloodPressureDiastolicData(completion: { (bloodPressureDiastolicRawData) in
-            for data in bloodPressureDiastolicRawData! {
-                let bloodPressureDiastolicModel = BloodPressureDiastolicData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
-                self.bloodPressureDiastolicArrayData.append(bloodPressureDiastolicModel)
-            }
-            bloodPressureDiastolicSet = true
-        })
-        
         // Body Mass
         getBodyMassData(completion: { (bodyMassRawData) in
             for data in bodyMassRawData! {
@@ -346,16 +314,7 @@ class MainViewController: UIViewController {
             }
             bodyMassSet = true
         })
-        
-        // Body Temperature
-        getBodyTemperatureData(completion: { (bodyTemperatureRawData) in
-            for data in bodyTemperatureRawData! {
-                let bodyTemperatureModel = BodyTemperatureData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
-                self.bodyTemperatureArrayData.append(bodyTemperatureModel)
-            }
-            bodyTemperatureSet = true
-        })
-        
+
         // Energy burned
         getActiveEnergyBurnedData(completion: { (activeEnergyBurnedRawData) in
             for data in activeEnergyBurnedRawData! {
@@ -365,22 +324,13 @@ class MainViewController: UIViewController {
             activeEnergyBurnedSet = true
         })
         
-        // Lean Body Mass
-        getLeanBodyMassData(completion: { (leanBodyMassRawData) in
-            for data in leanBodyMassRawData! {
-                let leanBodyMassModel = LeanBodyMassData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
-                self.leanBodyMassArrayData.append(leanBodyMassModel)
+        // Get Distance for Walking and Running
+        getDistanceWalkingRunningData(completion: { (arrayOfDistanceWalkingRunning) in
+            for data in arrayOfDistanceWalkingRunning! {
+                let arrayOfDistanceWalkingRunningModel = DistanceWalkingRunning(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
+                self.distanceWalkingRunningArrayData.append(arrayOfDistanceWalkingRunningModel)
             }
-            leanBodyMassSet = true
-        })
-        
-        // Respiratory Rate
-        getRespiratoryRateData(completion: { (respiratoryRateRawData) in
-            for data in respiratoryRateRawData! {
-                let respiratoryRateModel = RespiratoryRateData(value: "\(data.quantity)", quantityType: "\(data.quantityType)", startDate: df.string(from: data.startDate), endDate: df.string(from: data.endDate))
-                self.respiratoryRateArrayData.append(respiratoryRateModel)
-            }
-            respiratoryRateSet = true
+            distanceWalkingRunningSet = true
         })
         
         // Resting Heart Rate
@@ -454,104 +404,11 @@ class MainViewController: UIViewController {
         healthStore.execute(dataQuery)
     }
     
-    func getBloodPressureSystolicData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
-        /* Once Authorized to get data, this function will locate and pull the data. */
-        
-        // Date to end location
-        let now = Date()
-        
-        // Date to start location
-        let startOfDay = Calendar.current.date(byAdding: .day, value: self.daysBack, to: now)
-        
-        // Predicate (won't be needing it to get all data. Useful when looking for specific data)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictEndDate)
-        
-        
-        // Tell what type of data it's looking for.
-        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .bloodPressureSystolic)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
-            
-            // Check if data is of right type
-            guard let samples = samplesOrNil as? [HKQuantitySample] else {
-                print(error, "deosn't work as quantity type.")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                // Return Heart Rate data when done.
-                completion(samples)
-            }
-        })
-        // Runs the data query to get data
-        healthStore.execute(dataQuery)
-    }
-    
-    func getBloodPressureDiastolicData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
-        /* Once Authorized to get data, this function will locate and pull the data. */
-        
-        // Date to end location
-        let now = Date()
-        
-        // Date to start location
-        let startOfDay = Calendar.current.date(byAdding: .day, value: self.daysBack, to: now)
-        
-        // Predicate (won't be needing it to get all data. Useful when looking for specific data)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictEndDate)
-        
-        
-        // Tell what type of data it's looking for.
-        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .bloodPressureDiastolic)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
-            
-            // Check if data is of right type
-            guard let samples = samplesOrNil as? [HKQuantitySample] else {
-                print(error, "deosn't work as quantity type.")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                // Return Heart Rate data when done.
-                completion(samples)
-            }
-        })
-        // Runs the data query to get data
-        healthStore.execute(dataQuery)
-    }
-    
     func getBodyMassData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
         /* Once Authorized to get data, this function will locate and pull the data. */
         
         // Tell what type of data it's looking for.
         let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .bodyMass)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
-            
-            // Check if data is of right type
-            guard let samples = samplesOrNil as? [HKQuantitySample] else {
-                print(error, "deosn't work as quantity type.")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                // Return Heart Rate data when done.
-                completion(samples)
-            }
-        })
-        // Runs the data query to get data
-        healthStore.execute(dataQuery)
-    }
-    
-    func getBodyTemperatureData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
-        /* Once Authorized to get data, this function will locate and pull the data. */
-        
-        // Date to end location
-        let now = Date()
-        
-        // Date to start location
-        let startOfDay = Calendar.current.date(byAdding: .day, value: self.daysBack, to: now)
-        
-        // Predicate (won't be needing it to get all data. Useful when looking for specific data)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictEndDate)
-        
-        
-        // Tell what type of data it's looking for.
-        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .bodyTemperature)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
             
             // Check if data is of right type
             guard let samples = samplesOrNil as? [HKQuantitySample] else {
@@ -599,28 +456,7 @@ class MainViewController: UIViewController {
         healthStore.execute(dataQuery)
     }
     
-    func getLeanBodyMassData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
-        /* Once Authorized to get data, this function will locate and pull the data. */
-        
-        // Tell what type of data it's looking for.
-        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .leanBodyMass)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
-            
-            // Check if data is of right type
-            guard let samples = samplesOrNil as? [HKQuantitySample] else {
-                print(error, "deosn't work as quantity type.")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                // Return Heart Rate data when done.
-                completion(samples)
-            }
-        })
-        // Runs the data query to get data
-        healthStore.execute(dataQuery)
-    }
-    
-    func getRespiratoryRateData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
+    func getDistanceWalkingRunningData(completion: @escaping (_ distanceWalkingRunning: [HKQuantitySample]?) -> Void) {
         /* Once Authorized to get data, this function will locate and pull the data. */
         
         // Date to end location
@@ -632,9 +468,8 @@ class MainViewController: UIViewController {
         // Predicate (won't be needing it to get all data. Useful when looking for specific data)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictEndDate)
         
-        
         // Tell what type of data it's looking for.
-        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .respiratoryRate)!, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
+        let dataQuery = HKSampleQuery.init(sampleType: HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil, resultsHandler: { (sampleQuery, samplesOrNil, error) in
             
             // Check if data is of right type
             guard let samples = samplesOrNil as? [HKQuantitySample] else {
@@ -650,6 +485,7 @@ class MainViewController: UIViewController {
         // Runs the data query to get data
         healthStore.execute(dataQuery)
     }
+
     
     func getRestingHeartRateData(completion: @escaping (_ heartRate: [HKQuantitySample]?) -> Void) {
         /* Once Authorized to get data, this function will locate and pull the data. */

@@ -11,6 +11,7 @@
 		F304EBBC220E8D3B004C88B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */; };
 		F3051CB3220BE6730080775E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3051CB2220BE6730080775E /* HealthKit.framework */; };
 		F3255E042227121D00411C70 /* PresentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3255E032227121D00411C70 /* PresentData.swift */; };
+		F362A5E12228F50F0036179D /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = F362A5E02228F50E0036179D /* login.json */; };
 		F374401C2203B30D00F06EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374401B2203B30D00F06EE8 /* AppDelegate.swift */; };
 		F374401E2203B30D00F06EE8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374401D2203B30D00F06EE8 /* MainViewController.swift */; };
 		F37440212203B30D00F06EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F374401F2203B30D00F06EE8 /* Main.storyboard */; };
@@ -22,11 +23,10 @@
 		F3891E68220AB76E00C11DFA /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891E67220AB76E00C11DFA /* Health.swift */; };
 		F391C088220CCF1A00D47CED /* HealthKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391C087220CCF1A00D47CED /* HealthKitData.swift */; };
 		F394428E22139C59005A8214 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394428D22139C59005A8214 /* TestViewController.swift */; };
-		F39442902213A2B0005A8214 /* progress1.json in Resources */ = {isa = PBXBuildFile; fileRef = F394428F2213A2B0005A8214 /* progress1.json */; };
 		F39442942213A7A8005A8214 /* progress.json in Resources */ = {isa = PBXBuildFile; fileRef = F39442932213A7A8005A8214 /* progress.json */; };
 		F39B2541220FE90100B71044 /* upload.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2540220FE90100B71044 /* upload.json */; };
 		F39B2543220FE95000B71044 /* finished.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B2542220FE95000B71044 /* finished.json */; };
-		F3CE63BC221E3C0300CAE93D /* background.json in Resources */ = {isa = PBXBuildFile; fileRef = F3CE63BB221E3C0300CAE93D /* background.json */; };
+		F3F6063D222E3A9100AA5646 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F6063C222E3A9100AA5646 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +36,7 @@
 		F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3051CB2220BE6730080775E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F3255E032227121D00411C70 /* PresentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentData.swift; sourceTree = "<group>"; };
+		F362A5E02228F50E0036179D /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 		F37440182203B30D00F06EE8 /* Recaminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recaminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F374401B2203B30D00F06EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F374401D2203B30D00F06EE8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -50,11 +51,10 @@
 		F3891E67220AB76E00C11DFA /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		F391C087220CCF1A00D47CED /* HealthKitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitData.swift; sourceTree = "<group>"; };
 		F394428D22139C59005A8214 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		F394428F2213A2B0005A8214 /* progress1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = progress1.json; sourceTree = "<group>"; };
 		F39442932213A7A8005A8214 /* progress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = progress.json; sourceTree = "<group>"; };
 		F39B2540220FE90100B71044 /* upload.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upload.json; sourceTree = "<group>"; };
 		F39B2542220FE95000B71044 /* finished.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = finished.json; sourceTree = "<group>"; };
-		F3CE63BB221E3C0300CAE93D /* background.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = background.json; sourceTree = "<group>"; };
+		F3F6063C222E3A9100AA5646 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +120,7 @@
 			children = (
 				F374401D2203B30D00F06EE8 /* MainViewController.swift */,
 				F3255E032227121D00411C70 /* PresentData.swift */,
+				F3F6063C222E3A9100AA5646 /* TableViewCell.swift */,
 				F394428D22139C59005A8214 /* TestViewController.swift */,
 				F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */,
 			);
@@ -166,8 +167,7 @@
 			children = (
 				F39B2540220FE90100B71044 /* upload.json */,
 				F39B2542220FE95000B71044 /* finished.json */,
-				F394428F2213A2B0005A8214 /* progress1.json */,
-				F3CE63BB221E3C0300CAE93D /* background.json */,
+				F362A5E02228F50E0036179D /* login.json */,
 				F39442932213A7A8005A8214 /* progress.json */,
 			);
 			path = "Animations (JSON)";
@@ -241,14 +241,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F39442902213A2B0005A8214 /* progress1.json in Resources */,
 				F39442942213A7A8005A8214 /* progress.json in Resources */,
 				F39B2541220FE90100B71044 /* upload.json in Resources */,
+				F362A5E12228F50F0036179D /* login.json in Resources */,
 				F37440262203B30E00F06EE8 /* LaunchScreen.storyboard in Resources */,
 				F37440232203B30E00F06EE8 /* Assets.xcassets in Resources */,
 				F37440212203B30D00F06EE8 /* Main.storyboard in Resources */,
 				F39B2543220FE95000B71044 /* finished.json in Resources */,
-				F3CE63BC221E3C0300CAE93D /* background.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +311,7 @@
 				F374402E2203BE3B00F06EE8 /* Extensions.swift in Sources */,
 				F304EBBC220E8D3B004C88B4 /* LoginViewController.swift in Sources */,
 				F391C088220CCF1A00D47CED /* HealthKitData.swift in Sources */,
+				F3F6063D222E3A9100AA5646 /* TableViewCell.swift in Sources */,
 				F374401C2203B30D00F06EE8 /* AppDelegate.swift in Sources */,
 				F394428E22139C59005A8214 /* TestViewController.swift in Sources */,
 				F3891E66220AB74200C11DFA /* Trainer.swift in Sources */,
