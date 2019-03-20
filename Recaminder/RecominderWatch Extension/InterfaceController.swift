@@ -23,7 +23,7 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         runningLabel.setText("Running")
-    }
+    } 
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
