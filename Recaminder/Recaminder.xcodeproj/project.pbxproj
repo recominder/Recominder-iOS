@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FBB89452242E57800FDB6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FBB89442242E57800FDB6E5 /* Assets.xcassets */; };
+		0FBB894C2242E57800FDB6E5 /* RecominderWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0FBB894B2242E57800FDB6E5 /* RecominderWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0FBB89512242E57800FDB6E5 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBB89502242E57800FDB6E5 /* InterfaceController.swift */; };
+		0FBB89532242E57800FDB6E5 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBB89522242E57800FDB6E5 /* ExtensionDelegate.swift */; };
+		0FBB89552242E57800FDB6E5 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBB89542242E57800FDB6E5 /* NotificationController.swift */; };
+		0FBB89572242E57900FDB6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FBB89562242E57900FDB6E5 /* Assets.xcassets */; };
+		0FBB895C2242E57900FDB6E5 /* RecominderWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0FBB893F2242E57800FDB6E5 /* RecominderWatch.app */; };
+		0FBB89662242E6C900FDB6E5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FBB89652242E6C900FDB6E5 /* Interface.storyboard */; };
 		6966C2A18DEEB0C0B2CB677B /* Pods_Recaminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53114EA5C93E601152355A4A /* Pods_Recaminder.framework */; };
 		F304EBBC220E8D3B004C88B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F304EBBB220E8D3B004C88B4 /* LoginViewController.swift */; };
 		F3051CB3220BE6730080775E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3051CB2220BE6730080775E /* HealthKit.framework */; };
@@ -29,7 +37,60 @@
 		F3F6063D222E3A9100AA5646 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F6063C222E3A9100AA5646 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0FBB894D2242E57800FDB6E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F37440102203B30D00F06EE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FBB894A2242E57800FDB6E5;
+			remoteInfo = "RecominderWatch Extension";
+		};
+		0FBB895A2242E57900FDB6E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F37440102203B30D00F06EE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FBB893E2242E57800FDB6E5;
+			remoteInfo = RecominderWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0FBB89622242E57900FDB6E5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0FBB894C2242E57800FDB6E5 /* RecominderWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FBB89642242E57900FDB6E5 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				0FBB895C2242E57900FDB6E5 /* RecominderWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0FBB893F2242E57800FDB6E5 /* RecominderWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecominderWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FBB89442242E57800FDB6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0FBB89462242E57800FDB6E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FBB894B2242E57800FDB6E5 /* RecominderWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RecominderWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FBB89502242E57800FDB6E5 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		0FBB89522242E57800FDB6E5 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		0FBB89542242E57800FDB6E5 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		0FBB89562242E57900FDB6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0FBB89582242E57900FDB6E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FBB89592242E57900FDB6E5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		0FBB89652242E6C900FDB6E5 /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		2847AA6CDFDB342228781789 /* Pods-Recaminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recaminder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recaminder/Pods-Recaminder.release.xcconfig"; sourceTree = "<group>"; };
 		53114EA5C93E601152355A4A /* Pods_Recaminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recaminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10B6D1819ACCC8BBBEDE86C /* Pods-Recaminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recaminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recaminder/Pods-Recaminder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0FBB89482242E57800FDB6E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F37440152203B30D00F06EE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +138,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FBB89402242E57800FDB6E5 /* RecominderWatch */ = {
+			isa = PBXGroup;
+			children = (
+				0FBB89652242E6C900FDB6E5 /* Interface.storyboard */,
+				0FBB89442242E57800FDB6E5 /* Assets.xcassets */,
+				0FBB89462242E57800FDB6E5 /* Info.plist */,
+			);
+			path = RecominderWatch;
+			sourceTree = "<group>";
+		};
+		0FBB894F2242E57800FDB6E5 /* RecominderWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0FBB89502242E57800FDB6E5 /* InterfaceController.swift */,
+				0FBB89522242E57800FDB6E5 /* ExtensionDelegate.swift */,
+				0FBB89542242E57800FDB6E5 /* NotificationController.swift */,
+				0FBB89562242E57900FDB6E5 /* Assets.xcassets */,
+				0FBB89582242E57900FDB6E5 /* Info.plist */,
+				0FBB89592242E57900FDB6E5 /* PushNotificationPayload.apns */,
+			);
+			path = "RecominderWatch Extension";
+			sourceTree = "<group>";
+		};
 		27FC89B1425285AD71BF038A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				F374401A2203B30D00F06EE8 /* Recaminder */,
+				0FBB89402242E57800FDB6E5 /* RecominderWatch */,
+				0FBB894F2242E57800FDB6E5 /* RecominderWatch Extension */,
 				F37440192203B30D00F06EE8 /* Products */,
 				F374403622040C2400F06EE8 /* Frameworks */,
 				27FC89B1425285AD71BF038A /* Pods */,
@@ -93,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				F37440182203B30D00F06EE8 /* Recaminder.app */,
+				0FBB893F2242E57800FDB6E5 /* RecominderWatch.app */,
+				0FBB894B2242E57800FDB6E5 /* RecominderWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,6 +271,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0FBB893E2242E57800FDB6E5 /* RecominderWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FBB89632242E57900FDB6E5 /* Build configuration list for PBXNativeTarget "RecominderWatch" */;
+			buildPhases = (
+				0FBB893D2242E57800FDB6E5 /* Resources */,
+				0FBB89622242E57900FDB6E5 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FBB894E2242E57800FDB6E5 /* PBXTargetDependency */,
+			);
+			name = RecominderWatch;
+			productName = RecominderWatch;
+			productReference = 0FBB893F2242E57800FDB6E5 /* RecominderWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		0FBB894A2242E57800FDB6E5 /* RecominderWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FBB89612242E57900FDB6E5 /* Build configuration list for PBXNativeTarget "RecominderWatch Extension" */;
+			buildPhases = (
+				0FBB89472242E57800FDB6E5 /* Sources */,
+				0FBB89482242E57800FDB6E5 /* Frameworks */,
+				0FBB89492242E57800FDB6E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RecominderWatch Extension";
+			productName = "RecominderWatch Extension";
+			productReference = 0FBB894B2242E57800FDB6E5 /* RecominderWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		F37440172203B30D00F06EE8 /* Recaminder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F374402A2203B30E00F06EE8 /* Build configuration list for PBXNativeTarget "Recaminder" */;
@@ -185,10 +314,12 @@
 				F37440152203B30D00F06EE8 /* Frameworks */,
 				F37440162203B30D00F06EE8 /* Resources */,
 				653B34A7B19EC1EEAD377AD3 /* [CP] Embed Pods Frameworks */,
+				0FBB89642242E57900FDB6E5 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0FBB895B2242E57900FDB6E5 /* PBXTargetDependency */,
 			);
 			name = Recaminder;
 			productName = Recaminder;
@@ -205,6 +336,12 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Timofey Makhlay";
 				TargetAttributes = {
+					0FBB893E2242E57800FDB6E5 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					0FBB894A2242E57800FDB6E5 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					F37440172203B30D00F06EE8 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
@@ -232,11 +369,30 @@
 			projectRoot = "";
 			targets = (
 				F37440172203B30D00F06EE8 /* Recaminder */,
+				0FBB893E2242E57800FDB6E5 /* RecominderWatch */,
+				0FBB894A2242E57800FDB6E5 /* RecominderWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0FBB893D2242E57800FDB6E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FBB89662242E6C900FDB6E5 /* Interface.storyboard in Resources */,
+				0FBB89452242E57800FDB6E5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FBB89492242E57800FDB6E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FBB89572242E57900FDB6E5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F37440162203B30D00F06EE8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,6 +459,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0FBB89472242E57800FDB6E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FBB89552242E57800FDB6E5 /* NotificationController.swift in Sources */,
+				0FBB89532242E57800FDB6E5 /* ExtensionDelegate.swift in Sources */,
+				0FBB89512242E57800FDB6E5 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F37440142203B30D00F06EE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +488,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0FBB894E2242E57800FDB6E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FBB894A2242E57800FDB6E5 /* RecominderWatch Extension */;
+			targetProxy = 0FBB894D2242E57800FDB6E5 /* PBXContainerItemProxy */;
+		};
+		0FBB895B2242E57900FDB6E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FBB893E2242E57800FDB6E5 /* RecominderWatch */;
+			targetProxy = 0FBB895A2242E57900FDB6E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F374401F2203B30D00F06EE8 /* Main.storyboard */ = {
@@ -343,6 +522,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0FBB895D2242E57900FDB6E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3G38J89NF;
+				IBSC_MODULE = RecominderWatch_Extension;
+				INFOPLIST_FILE = RecominderWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		0FBB895E2242E57900FDB6E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3G38J89NF;
+				IBSC_MODULE = RecominderWatch_Extension;
+				INFOPLIST_FILE = RecominderWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		0FBB895F2242E57900FDB6E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3G38J89NF;
+				INFOPLIST_FILE = "RecominderWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		0FBB89602242E57900FDB6E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3G38J89NF;
+				INFOPLIST_FILE = "RecominderWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
 		F37440282203B30E00F06EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -467,13 +730,13 @@
 				CODE_SIGN_ENTITLEMENTS = Recaminder/Recaminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SAZ2DLKCVY;
+				DEVELOPMENT_TEAM = R3G38J89NF;
 				INFOPLIST_FILE = Recaminder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Timo-Recominder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -489,13 +752,13 @@
 				CODE_SIGN_ENTITLEMENTS = Recaminder/Recaminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SAZ2DLKCVY;
+				DEVELOPMENT_TEAM = R3G38J89NF;
 				INFOPLIST_FILE = Recaminder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Timo-Recominder";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-Recominder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -506,6 +769,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0FBB89612242E57900FDB6E5 /* Build configuration list for PBXNativeTarget "RecominderWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FBB895F2242E57900FDB6E5 /* Debug */,
+				0FBB89602242E57900FDB6E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FBB89632242E57900FDB6E5 /* Build configuration list for PBXNativeTarget "RecominderWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FBB895D2242E57900FDB6E5 /* Debug */,
+				0FBB895E2242E57900FDB6E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F37440132203B30D00F06EE8 /* Build configuration list for PBXProject "Recaminder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

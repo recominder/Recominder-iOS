@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="RecominderWatch" customModuleProvider="target">
+                    <items>
+                        <button width="1" alignment="left" title="Button" id="seO-eY-HAb">
+                            <connections>
+                                <segue destination="rOp-GM-3NJ" kind="push" id="vek-NK-SQJ"/>
+                            </connections>
+                        </button>
+                        <group width="1" alignment="left" layout="overlap" id="YiV-Qd-6Pe" userLabel="Running">
+                            <items>
+                                <imageView alignment="left" image="watchdatablock2" id="kOw-hw-qcr"/>
+                                <label alignment="center" text="Label" baselineAdjustment="alignCenters" id="zVR-M2-WNy">
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                        <group width="1" alignment="left" layout="overlap" id="17u-12-MXY" userLabel="Heart">
+                            <items>
+                                <imageView alignment="left" image="watchdatablock" id="MKk-1s-y14"/>
+                                <label alignment="center" text="Label" baselineAdjustment="alignCenters" id="l11-Hb-Oz4">
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                        <group width="1" alignment="left" layout="overlap" id="Ozn-C0-MUh" userLabel="Water Amount">
+                            <items>
+                                <imageView alignment="left" image="watchdatablock3" id="y7R-u2-KrJ"/>
+                                <label alignment="center" text="Label" baselineAdjustment="alignCenters" id="x2R-fd-JcS">
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                        <group width="1" alignment="left" layout="overlap" id="l5P-7y-c2V" userLabel="Time">
+                            <items>
+                                <imageView alignment="left" image="watchdatablock4" id="8pw-mw-HgV"/>
+                                <label alignment="center" text="Label" baselineAdjustment="alignCenters" id="k07-EZ-gkw">
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="runningLabel" destination="zVR-M2-WNy" id="BpR-Ox-u7l"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-68" y="59"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="It's time to take a drink!" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="RecominderWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="tf6-7o-w8a">
+            <objects>
+                <controller id="rOp-GM-3NJ">
+                    <items>
+                        <group width="1" height="88" alignment="left" id="uIh-At-awo">
+                            <items>
+                                <button width="30" height="30" alignment="left" verticalAlignment="center" backgroundImage="minus" id="bvn-Vw-boW"/>
+                                <label width="30" alignment="center" verticalAlignment="center" text="7 oz" id="h4F-VC-IFm"/>
+                                <button width="30" height="30" alignment="right" verticalAlignment="center" backgroundImage="plus" id="fEd-0G-Lga"/>
+                            </items>
+                        </group>
+                        <label width="87" alignment="center" text="MOST: 0 oz" id="Di1-Im-PWF"/>
+                        <button width="1" alignment="left" title="Add Water" backgroundImage="addwaterbutton" id="8jn-V5-OXi"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="197" y="41"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="RecominderWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+</document>
