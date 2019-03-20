@@ -7,4 +7,5 @@ target 'Recaminder' do
 
   # Pods for Recaminder
   pod 'lottie-ios'
+  pod 'Alamofire', '~> 5.0.0-beta.2'
 end

@@ -27,10 +27,10 @@ class PresentDataVC: UIViewController {
                 print("Loaded")
             case .error:
                 print("State error")
-                let data1 = PresentableData(img: #imageLiteral(resourceName: "icon-heart"), title: "Heart Rate", amount: "80")
-                let data2 = PresentableData(img: #imageLiteral(resourceName: "icon-run"), title: "Calories Burned", amount: "2500")
-                let data3 = PresentableData(img: #imageLiteral(resourceName: "icon-drop"), title: "Should you drink?", amount: "YES")
-                let data4 = PresentableData(img: #imageLiteral(resourceName: "icon-cup"), title: "How much water?", amount: "2 Literss")
+                let data1 = PresentableData(img: #imageLiteral(resourceName: "icon-heart"), title: "Heart Rate", amount: "83 BPM")
+                let data2 = PresentableData(img: #imageLiteral(resourceName: "icon-run"), title: "Calories Burned", amount: "270 kcal/day")
+                let data3 = PresentableData(img: #imageLiteral(resourceName: "icon-drop"), title: "Should you drink right now?", amount: "YES")
+                let data4 = PresentableData(img: #imageLiteral(resourceName: "icon-cup"), title: "How much water a day?", amount: "70 oz")
                 allData = [data1,data2,data3,data4]
             }
         }
@@ -87,6 +87,7 @@ extension PresentDataVC: UITableViewDataSource {
         cell.titleLabel.text = currentDataPoint.title
         cell.amountLabel.text = currentDataPoint.amount
         cell.currentImageView.image = currentDataPoint.img
+        cell.selectionStyle = .blue
         return cell
     }
     
